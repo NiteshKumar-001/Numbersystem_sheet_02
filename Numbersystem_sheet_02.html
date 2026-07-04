@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NUMBER SYSTEM AND MORE- Number System Sheet -2</title>
+    
+    <!-- MATHJAX CONFIGURATION -->
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            }
+        };
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f3f4f6;
+            color: #1f2937;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .quiz-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: transparent;
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .quiz-header h1 {
+            color: #111827;
+            font-size: 28px;
+        }
+
+        .question-card {
+            background-color: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .question-text {
+            font-size: 18px;
+            font-weight: 600;
+            margin-top: 0;
+            margin-bottom: 16px;
+            line-height: 1.5;
+            white-space: pre-wrap;
+        }
+
+        .exam-tag {
+            color: #d97706;
+            font-size: 14px;
+            font-weight: 700;
+            display: block;
+            margin-top: 8px;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        @media (max-width: 600px) {
+            .options-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .option-btn {
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            padding: 14px 16px;
+            font-size: 15px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.2s ease;
+            color: #374151;
+        }
+
+        .option-btn:hover:not(:disabled) {
+            background-color: #f3f4f6;
+            border-color: #d1d5db;
+        }
+
+        .option-btn:disabled {
+            cursor: default;
+        }
+
+        .option-btn.correct {
+            background-color: #dcfce7;
+            border-color: #86efac;
+            color: #166534;
+        }
+
+        .option-btn.wrong {
+            background-color: #fee2e2;
+            border-color: #fca5a5;
+            color: #991b1b;
+        }
+
+        .feedback-box {
+            margin-top: 16px;
+            padding: 12px 16px;
+            border-radius: 6px;
+            background-color: #eff6ff;
+            color: #1e3a8a;
+            font-size: 14px;
+            font-weight: 500;
+            display: none;
+        }
+
+        .submit-section {
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 60px;
+            padding-top: 20px;
+            border-top: 2px solid #e5e7eb;
+        }
+
+        .submit-btn {
+            background-color: #2563eb;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            padding: 16px 32px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .submit-btn:hover {
+            background-color: #1d4ed8;
+        }
+
+        .final-score-container {
+            display: none;
+            background-color: #10b981;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            font-size: 24px;
+            font-weight: bold;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="quiz-container">
+    <div class="quiz-header">
+        <h1>NUMBER SYSTEM AND MORE- Number System Sheet -2</h1>
+    </div>
+
+    <div id="quiz-list"></div>
+
+    <div class="submit-section">
+        <button class="submit-btn" id="submit-btn" onclick="showFinalScore()">Submit Quiz</button>
+        <div class="final-score-container" id="final-score-container">
+            Your Final Score: <span id="final-score">0</span> / <span id="total-score">0</span>
+        </div>
+    </div>
+</div>
+
+<script>
+    const quizData = [
+        { q: "1. $32^{5}+2^{27}$ is divisible by?", exam: "(UPSC CSAT 2024)", options: ["3", "7", "11", "10"], correct: 3 },
+        { q: "2. Which of the following numbers will completely divide $4^{12}+4^{13}+4^{14}+4^{15}$?", exam: "SSC CGL 2023 PRE", options: ["3", "7", "11", "17"], correct: 3 },
+        { q: "3. $5^{71}+5^{72}+5^{73}+5^{74}+5^{75}$ is divisible by which of the following number?", exam: "", options: ["71", "69", "89", "73"], correct: 0 },
+        { q: "4. A seven-digit number is divisible by 77. If 91 is added to this number, the resulting number is always divisible by which of the following numbers?", exam: "(RPF CONSTABLE 2025)", options: ["7", "77", "13", "91"], correct: 0 },
+        { q: "5. On dividing 15,971 by a certain number, the quotient is 55 and the remainder is 21. Find the divisor.", exam: "RRB NTPC 08/02/2021 (Morning)", options: ["275", "285", "290", "280"], correct: 2 },
+        { q: "6. A number when divided by 78 gives the quotient 280 and the remainder 67. If the same number is divided by 65, What will be the value of the remainder?", exam: "SSC CHSL 2023 PRE", options: ["0", "2", "1", "3"], correct: 1 },
+        { q: "7. The divisor is 10 times the quotient and 5 times the remainder in a division sum. What is the dividend if the remainder is 46?", exam: "SSC CHSL 2023 PRE", options: ["5336", "4286", "5972", "4874"], correct: 0 },
+        { q: "8. When a number x is divided by a divisor it is seen that the divisor = 4 times the quotient = double the remainder. If the remainder is 80 then the value of x is", exam: "", options: ["6480", "9680", "8460", "4680"], correct: 0 },
+        { q: "9. In a division sum, the divisor is 4 times the quotient and twice the remainder. If a and b are respectively the divisor and the dividend, then", exam: "", options: ["$\\frac{4b-a^{2}}{a}=3$", "$\\frac{4b-2a}{a^{2}}=2$", "$(a+1)^{2}=4b$", "$\\frac{a(a+2)}{b}=4$"], correct: 3 },
+        { q: "10. When N is divided by 17, the quotient is equal to 182. The difference between the quotient and the remainder is 175. What is the value of N?", exam: "", options: ["2975", "3094", "3101", "3269"], correct: 2 },
+        { q: "11. Two positive numbers differ by 2001. When the large number is divided by the smaller number, the quotient is 9 and the remainder is 41. The sum of the digits of the large number is:", exam: "", options: ["11", "10", "15", "14"], correct: 3 },
+        { q: "12. When the integer n is divided by 18, the quotient is x and the remainder is 6, When the integer n is divided by 25, the quotient is y and the remainder is 15. Which of the following is true?", exam: "(SSC CHSL PRE 2024)", options: ["$25y+18x=9$", "$25y-18x=9$", "$18x+25y=9$", "$18x-25y=9$"], correct: 3 },
+        { q: "13. A number 'y' when divided by 225 leaves 33 as the remainder. The same number when divided by 15 leaves 'z' as the remainder. The value of z is:", exam: "", options: ["1", "3", "4", "2"], correct: 1 },
+        { q: "14. On dividing a certain number by 342 we get 47 as remainder. If the same number is divided by 18, what will be the remainder?", exam: "", options: ["15", "11", "17", "13"], correct: 1 },
+        { q: "15. If a number is divisible by 624, the remainder will be 53. If the same number is divisible by 16, then the remainder will be:", exam: "", options: ["7", "6", "4", "5"], correct: 3 },
+        { q: "16. On dividing a certain number by 459, we get 19 as remainder. What will be the remainder, when the same number is divided by 17?", exam: "(SSC CHSL 2024)", options: ["13", "11", "2", "1"], correct: 2 },
+        { q: "17. If 7 divides the integer n, then the remainder is 2. What will be the remainder if 9n is divided by 7?", exam: "SSC CHSL 2023 PRE", options: ["5", "3", "1", "4"], correct: 3 },
+        { q: "18. When a number is divided by 14, the remainder is 9. If the square of the same number is divided by 14, then the remainder will be:", exam: "", options: ["11", "9", "10", "8"], correct: 0 },
+        { q: "19. When Two numbers, are separately divided by 33, leaves remainders 21 and 28 respectively. If the sum of those two numbers is divided by 33, the remainder will be", exam: "", options: ["10", "12", "14", "16"], correct: 3 },
+        { q: "20. The remainder on dividing given integers a and b by 8 are respectively 5 and 7. what is the remainder when ab is divided by 8?", exam: "", options: ["3", "2", "1", "4"], correct: 0 },
+        { q: "21. When a positive integer 'n' is divided by 12, the remainder is 5. What will be the remainder if $8n^{2}+7$ is divided by 12?", exam: "", options: ["2", "5", "3", "4"], correct: 2 },
+        { q: "22. A number 'n' when divided by 6 leaves remainder 2. What will be the remainder when $(n^{2}+n+2)$ is divided by 6?", exam: "", options: ["4", "6", "0", "2"], correct: 3 },
+        { q: "23. If 7 divided a positive integer n, the remainder is 2. Which of the following numbers gives a remainder of 0 when divided by 7?", exam: "", options: ["$n\\div2$", "$n+5$", "$n-5$", "$n\\div1$"], correct: 1 },
+        { q: "24. There are two natural numbers x and y, where x>y. when x is divided by 6, it leaves the remainder 2 and when y is divided by 6, it leaves the remainder 3. What is the remainder when $(x-y)$ is divided by 6?", exam: "", options: ["1", "3", "5", "Remainder cannot be determined"], correct: 2 },
+        { q: "25. There are two natural numbers m and n $(m>n)$. When m is divided by 12, it leaves a remainder 4. When n is divided by 12, it leaves a remainder 6. Which of the following statement are correct?\nI. The remainder when $(m+n)$ is divided by 12 is 10.\nII. The remainder when $(m-n)$ is divided by 12 is 10.", exam: "(UPSC CDS-1 2025)", options: ["I only", "II only", "Both I and II", "Neither I nor II"], correct: 2 },
+        { q: "26. When positive numbers x, y and z are divided by 124, the remainders are 17, 24 and 27, respectively. When $(4x-2y+3z)$ is divided by 31, the remainder will be:", exam: "", options: ["9", "8", "16", "19"], correct: 1 },
+        { q: "27. A number when divided by 442 gives a remainder of 49. Find the remainder when it is divided by 39.", exam: "", options: ["10", "9", "11", "Cannot be determined"], correct: 3 },
+        { q: "28. If a number is divided by 129 leaves remainder 27 if 4 times of this number is divided by 86 then what will be the remainder?", exam: "", options: ["19", "22", "23", "25"], correct: 1 },
+        { q: "29. A certain number when divided by 259 leaves a remainder 31. Another number when divided by 481 leaves a remainder 53. What is the remainder when the sum of these two numbers is divided by 37?", exam: "", options: ["10", "8", "12", "30"], correct: 0 },
+        { q: "30. If a number 'N' is divided by a divisor 'D' of 2-digit gives a remainder 68. If 5N is divided by D, it gives remainder 8, then, find value of D?", exam: "", options: ["83", "68", "76", "85"], correct: 0 },
+        { q: "31. When a positive integer is divided by D, the remainder is 25. When 8 times the same number is divided by D, the remainder is 8. Find the least possible value of D?", exam: "", options: ["28", "24", "36", "32"], correct: 3 },
+        { q: "32. A number when divided by 18 leaves a remainder 7. The same number when divided by 12 leaves a remainder N. How many values of N are possible?", exam: "", options: ["2", "1", "0", "3"], correct: 0 },
+        { q: "33. When a number is divided by divisor D, it leaves a remainder 10 and $N^{2}$ is divided by D leaves remainder 4. How many values of D are possible?", exam: "", options: ["5", "4", "6", "7"], correct: 2 },
+        { q: "34. When a number is divided by a certain divisor, the remainder is 46. If another number is divided by same divisor, it leaves remainder 31. If the sum of both the numbers is divided by the same divisor, it gives remainder 19. Find divisor.", exam: "", options: ["56", "50", "58", "64"], correct: 2 }
+    ];
+
+    let currentScore = 0;
+    const totalQuestions = quizData.length;
+    const labels = ["A. ", "B. ", "C. ", "D. "];
+
+    const quizListElement = document.getElementById("quiz-list");
+    document.getElementById("total-score").innerText = totalQuestions;
+
+    quizData.forEach((data, qIndex) => {
+        const card = document.createElement("div");
+        card.className = "question-card";
+
+        const questionText = document.createElement("h3");
+        questionText.className = "question-text";
+        
+        if (data.exam) {
+            questionText.innerHTML = `${data.q} <span class="exam-tag">${data.exam}</span>`;
+        } else {
+            questionText.innerText = data.q;
+        }
+        
+        card.appendChild(questionText);
+
+        const optionsGrid = document.createElement("div");
+        optionsGrid.className = "options-grid";
+
+        const feedbackBox = document.createElement("div");
+        feedbackBox.className = "feedback-box";
+
+        data.options.forEach((optionText, oIndex) => {
+            const btn = document.createElement("button");
+            btn.className = "option-btn";
+            btn.innerHTML = labels[oIndex] + optionText;
+
+            btn.onclick = () => handleAnswer(btn, oIndex, data.correct, optionsGrid, feedbackBox, data);
+            
+            optionsGrid.appendChild(btn);
+        });
+
+        card.appendChild(optionsGrid);
+        card.appendChild(feedbackBox);
+        quizListElement.appendChild(card);
+    });
+
+    // Force MathJax to process the page after the JavaScript finishes building it
+    if (window.MathJax) {
+        MathJax.typesetPromise();
+    }
+
+    function handleAnswer(selectedBtn, selectedIndex, correctIndex, optionsGrid, feedbackBox, data) {
+        const allButtons = optionsGrid.querySelectorAll(".option-btn");
+
+        allButtons.forEach(btn => btn.disabled = true);
+
+        if (selectedIndex === correctIndex) {
+            selectedBtn.classList.add("correct");
+            currentScore++;
+            feedbackBox.innerText = `Correct!`;
+        } else {
+            selectedBtn.classList.add("wrong");
+            allButtons[correctIndex].classList.add("correct");
+            feedbackBox.innerText = `Incorrect. The correct answer is Option ${labels[correctIndex].trim()}`;
+            feedbackBox.style.color = "#991b1b";
+            feedbackBox.style.backgroundColor = "#fee2e2";
+        }
+
+        feedbackBox.style.display = "block";
+    }
+
+    function showFinalScore() {
+        document.getElementById("submit-btn").style.display = "none";
+        document.getElementById("final-score").innerText = currentScore;
+        document.getElementById("final-score-container").style.display = "block";
+        
+        document.getElementById("final-score-container").scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+</script>
+
+</body>
+</html>
